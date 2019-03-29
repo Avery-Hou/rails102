@@ -6,4 +6,18 @@ class DiscussGroupsController < ApplicationController
 	def new
 		@discuss_group = DiscussGroup.new
 	end
+
+
+	def create
+		@discuss_group = DiscussGroup.new(discuss_group_params)
+		@discuss_group.save
+		redirect_to discuss_groups_path
+	end
+
+
+	private 
+
+	def discuss_group_params
+		params.require(:discuss_group).permit(:title, :description)
+	end
 end
