@@ -28,6 +28,12 @@ class DiscussGroupsController < ApplicationController
 		@discuss_group = DiscussGroup.find(params[:id])
 	end
 
+	def destroy
+		@discuss_group = DiscussGroup.find(params[:id])
+		@discuss_group.destroy
+		redirect_to discuss_groups_path, alert: "Discuss group deleted"
+	end
+
 
 	private 
 
