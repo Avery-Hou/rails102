@@ -18,7 +18,11 @@ class DiscussGroupsController < ApplicationController
 		@discuss_group = DiscussGroup.find(params[:id])
 	end
 
-	
+	def update
+		@discuss_group = DiscussGroup.find(params[:id])
+		@discuss_group.update(discuss_group_params)
+		redirect_to discuss_groups_path, notice: "update success"
+	end
 
 	def show
 		@discuss_group = DiscussGroup.find(params[:id])
