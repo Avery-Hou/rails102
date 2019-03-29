@@ -14,6 +14,10 @@ class DiscussGroupsController < ApplicationController
 		redirect_to discuss_groups_path
 	end
 
+	def edit
+		@discuss_group = DiscussGroup.find(params[:id])
+	end
+
 	
 
 	def show
