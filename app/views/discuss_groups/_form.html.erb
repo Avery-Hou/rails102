@@ -1,0 +1,18 @@
+<%= form_for discuss_group do |f| %>
+
+<% if discuss_group.errors.any? %>
+	<% discuss_group.errors.full_messages.each do |msg| %>
+		<li><%=msg %></li>
+	<% end %>
+<% end %>
+
+標題
+<%= f.text_field :title %>
+<br>
+
+敘述
+<%= f.text_area :description %>
+<BR>
+
+<%= f.submit "送出", disable_with: "submiting..." %>
+<% end %>
