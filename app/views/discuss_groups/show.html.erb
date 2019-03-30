@@ -3,8 +3,10 @@
 		<span class="pull-right">
 			<% if current_user && current_user.is_member_of?(@discuss_group) %>
 				<label for="" class="label label-success">討論群成員</label>
+				<%= link_to "退出討論群", quit_discuss_group_path(@discuss_group), method: :post, class: "btn btn-default" %>
 			<% else %>
-				<label for="" class="label label-warning">非討論群成員</label>	
+				<label for="" class="label label-warning">非討論群成員</label>
+				<%= link_to "加入討論群", join_discuss_group_path(@discuss_group), method: :post, class: "btn btn-default" %>
 			<% end %>
 		</span>
 

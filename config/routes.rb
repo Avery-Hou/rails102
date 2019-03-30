@@ -4,5 +4,7 @@ Rails.application.routes.draw do
 
 	resources :discuss_groups do
 		resources :posts
+		post :join, on: :member
+		post :quit, on: :member
 	end
 end
