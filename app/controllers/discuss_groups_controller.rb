@@ -14,6 +14,7 @@ class DiscussGroupsController < ApplicationController
     @discuss_group = DiscussGroup.new(discuss_group_params)
     @discuss_group.user = current_user
     if @discuss_group.save
+    	current_user.join!(@discuss_group)
       redirect_to discuss_groups_path, notice: "新增成功"
     else
       render :new
