@@ -34,7 +34,7 @@ class DiscussGroupsController < ApplicationController
 
 	def show
 		@discuss_group = DiscussGroup.find(params[:id])
-		@posts = @discuss_group.posts.recent
+		@posts = @discuss_group.posts.recent.paginate(page: params[:page], per_page: 5)
 	end
 
 	def destroy
