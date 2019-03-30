@@ -17,7 +17,7 @@
 			<tr>
 				<td>#</td>
 				<td><%= link_to discuss_group.title, discuss_group_path(discuss_group) %></td>
-				<td><%= simple_format(discuss_group.description) %></td>
+				<td><%= render_group_description(discuss_group) %></td>
 				<td><%= discuss_group.user.email %></td>
 				<td>
 					<%if current_user && current_user == discuss_group.user %>
