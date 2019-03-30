@@ -34,6 +34,7 @@ class DiscussGroupsController < ApplicationController
 
 	def show
 		@discuss_group = DiscussGroup.find(params[:id])
+		@posts = @discuss_group.posts
 	end
 
 	def destroy
