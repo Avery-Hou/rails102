@@ -10,5 +10,6 @@ Rails.application.routes.draw do
 
   namespace :account do
     resources :discuss_groups
+    resources :posts
   end
 end

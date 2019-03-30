@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
 	before_action :authenticate_user!, only: [:new, :create]
+	before_action :find_discuss_group_and_post, only: [:edit, :update, :destroy]
 
 	def new
 		@post = Post.new
@@ -19,7 +20,32 @@ class PostsController < ApplicationController
 	end
 
 
+	def edit
+		
+	end
+
+	def update
+		if @post.update(post_params)
+			redirect_to account_posts_path
+		else
+			render :edit
+		end 
+	end
+
+	#DELETE /discuss_groups/:discuss_group_id/posts/:id(.:format)     posts#destroy
+	def destroy
+		@post.destroy
+		redirect_to account_posts_path
+	end
+
+	private 
 	def post_params
 		params.require(:post).permit(:content)
+	end
+
+
+	def find_discuss_group_and_post
+		@discuss_group = DiscussGroup.find(params[:discuss_group_id])
+		@post = Post.find(params[:id])
 	end
 end
