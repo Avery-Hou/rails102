@@ -3,4 +3,7 @@ class Post < ApplicationRecord
 
   	belongs_to :discuss_group
   	belongs_to :user
+
+
+  	scope :recent, -> { order("created_at desc")}
 end
