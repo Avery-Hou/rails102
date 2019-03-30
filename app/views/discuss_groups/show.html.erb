@@ -1,5 +1,13 @@
 <div class="col-md-12">
 	<div class="group">
+		<span class="pull-right">
+			<% if current_user && current_user.is_member_of?(@discuss_group) %>
+				<label for="" class="label label-success">討論群成員</label>
+			<% else %>
+				<label for="" class="label label-warning">非討論群成員</label>	
+			<% end %>
+		</span>
+
 		<%= link_to "Write a Post", new_discuss_group_post_path(@discuss_group), class: "btn btn-default pull-right" %>
 		<% if current_user && current_user == @discuss_group.user %>
 			<%= link_to "Edit", edit_discuss_group_path(@discuss_group), class: "btn btn-primary pull-right" %>

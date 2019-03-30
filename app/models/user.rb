@@ -9,4 +9,9 @@ class User < ApplicationRecord
 
   has_many :discuss_group_relationships
   has_many :participated_discuss_groups, through: :discuss_group_relationships, source: :discuss_group
+
+
+  def is_member_of?(group)
+  	participated_discuss_groups.include?(group)
+  end
 end
