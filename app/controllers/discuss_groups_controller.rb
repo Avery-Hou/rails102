@@ -1,5 +1,5 @@
 class DiscussGroupsController < ApplicationController
-	before_action :authenticate_user!, only: [:new]
+	before_action :authenticate_user!, only: [:new, :create]
 
 	def index
 		@discuss_groups = DiscussGroup.all
@@ -11,6 +11,7 @@ class DiscussGroupsController < ApplicationController
 
 	def create
 		@discuss_group = DiscussGroup.new(discuss_group_params)
+		@discuss_group.user = current_user
 		if @discuss_group.save
 			redirect_to discuss_groups_path, notice: "新增成功"
 		else 
