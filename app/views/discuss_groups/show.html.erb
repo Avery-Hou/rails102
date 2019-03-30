@@ -17,7 +17,7 @@
 	</div>
 	<h2><%= @discuss_group.title %></h2>
 	<p>
-		<%= @discuss_group.description %>
+		<%= simple_format(@discuss_group.description) %>
 	</p>
 
 	<table class="table">
