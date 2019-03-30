@@ -1,5 +1,6 @@
 class DiscussGroupsController < ApplicationController
 	before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destory]
+	before_action :find_group_and_check_permission, only: [:edit, :update, :destory]
 
 	def index
 		@discuss_groups = DiscussGroup.all
@@ -20,18 +21,10 @@ class DiscussGroupsController < ApplicationController
 	end
 
 	def edit
-		@discuss_group = DiscussGroup.find(params[:id])
-		if current_user != @discuss_group.user
-			redirect_to discuss_groups_path, alert: "You have no permission"
-		end
+		
 	end
 
 	def update
-		@discuss_group = DiscussGroup.find(params[:id])
-		if current_user != @discuss_group.user
-			redirect_to discuss_groups_path, alert: "You have no permission"
-		end
-
 		if @discuss_group.update(discuss_group_params)
 			redirect_to discuss_groups_path, notice: "Update success"
 		else
@@ -44,11 +37,6 @@ class DiscussGroupsController < ApplicationController
 	end
 
 	def destroy
-		@discuss_group = DiscussGroup.find(params[:id])
-		if current_user != @discuss_group.user
-			redirect_to discuss_groups_path, alert: "You have no permission"
-		end
-		
 		@discuss_group.destroy
 		redirect_to discuss_groups_path, notice: "Delete success"
 	end
@@ -58,4 +46,12 @@ class DiscussGroupsController < ApplicationController
 	def discuss_group_params
 		params.require(:discuss_group).permit(:title, :description)
 	end
+
+	def find_group_and_check_permission
+		@discuss_group = DiscussGroup.find(params[:id])
+		if current_user != @discuss_group.user
+			redirect_to discuss_groups_path, alert: "You have no permission"
+		end
+	end
+
 end
