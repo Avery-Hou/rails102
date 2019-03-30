@@ -1,0 +1,13 @@
+
+<tr>
+	<td>#</td>
+	<td><%= link_to discuss_group.title, discuss_group_path(discuss_group) %></td>
+	<td><%= render_group_description(discuss_group) %></td>
+	<td><%= discuss_group.user.email %></td>
+	<td>
+		<%if current_user && current_user == discuss_group.user %>
+			<%= link_to "Edit", edit_discuss_group_path(discuss_group), class: "btn btn-default btn-sm" %>
+			<%= link_to "Delete", discuss_group_path(discuss_group), method: :delete, class: "btn btn-default btn-sm" ,data: {confirm: "Are You Sure?"} %>
+		<% end %>
+	</td>
+</tr>
